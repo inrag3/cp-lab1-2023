@@ -61,4 +61,24 @@ describe("test: cache class", () => {
         expect(cache.count).toBe(5);
         expect(hits).toBe(2);
     });
+
+    test("test: cache statistic", () => {
+        cache.call(1);
+        cache.call(66);
+        cache.call(100);
+        cache.call(100);
+        cache.call(100);
+
+        const statistic = cache.statistics;
+        const expectedStatistic = [
+            [1, [45, 0]],
+            [66, [11, 1]],
+            [100, [41, 2]],
+            [100, [41, 1]],
+            [100, [41, 0]],
+        ];
+        expect(statistic.length).toBe(expectedStatistic.length);
+        expect(statistic).toEqual(expectedStatistic);
+    });
+
 });

@@ -30,7 +30,7 @@ class Cache {
         this.values.set(key, [value, hits]);
     }
 
-    statistics() {
+    get statistics() {
     }
 }
 
