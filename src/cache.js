@@ -2,6 +2,7 @@ class Cache {
     //[Key [Value, Hits]]
     constructor(values) {
         this.values = values;
+        this.successfullHits = [];
     }
 
     get count() {
@@ -15,6 +16,8 @@ class Cache {
             return null;
 
         array[1] -= 1;
+        //...используется для клонирования массива
+        this.successfullHits.push([key, [...array]])
 
         if (array[1] === 0)
             this.values.delete(key);
@@ -31,6 +34,7 @@ class Cache {
     }
 
     get statistics() {
+        return this.successfullHits;
     }
 }
 
